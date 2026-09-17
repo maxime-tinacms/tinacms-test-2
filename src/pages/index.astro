@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import client from "../../tina/__generated__/client";
+
+const result = await client.queries.page({ relativePath: "home.mdx" });
+const page = result.data.page;
+---
+
+<Layout title={page.title} metaDescription={page.metaDescription ?? undefined}>
+  <h1 class="text-4xl font-bold mb-6">{page.title}</h1>
+  {page.image && (
+    <img src={page.image} alt={page.title} class="w-full max-w-2xl mb-6 rounded" />
+  )}
+  <div class="prose max-w-none">
+    <TinaMarkdown content={page.body} />
+  </div>
+</Layout>

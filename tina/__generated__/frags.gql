@@ -1,0 +1,7 @@
+fragment PageParts on Page {
+  __typename
+  title
+  image
+  metaDescription
+  body
+}
